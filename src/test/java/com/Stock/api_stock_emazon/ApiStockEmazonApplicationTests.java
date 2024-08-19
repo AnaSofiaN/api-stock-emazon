@@ -1,0 +1,13 @@
+package com.Stock.api_stock_emazon;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ApiStockEmazonApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
