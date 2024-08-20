@@ -7,6 +7,7 @@ import com.Stock.api_stock_emazon.domain.exception.LimitCharactersException;
 import com.Stock.api_stock_emazon.domain.model.Category;
 import com.Stock.api_stock_emazon.domain.spi.ICategoryPersistencePort;
 import com.Stock.api_stock_emazon.domain.util.ErrorConstants;
+import com.Stock.api_stock_emazon.domain.util.LimitNumberConstants;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -18,13 +19,13 @@ public class CategoryUseCase implements ICategoryServicePort {
     @Override
     public void createCategory(Category category) {
         // Lógica de negocio: Validación de reglas
-        if (category.getNombre().length() > 50) {
+        if (category.getNombre().length() > LimitNumberConstants.LIMIT_50) {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_NAME_CATEGORY);
         }
         if(category.getDescripcion().isBlank() || category.getNombre().isEmpty()) {
             throw new EmptyOrNullException(ErrorConstants.EMPTY_CATEGORY);
         }
-        if (category.getDescripcion().length() > 90) {
+        if (category.getDescripcion().length() > LimitNumberConstants.LIMIT_90) {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_DESCRIPTION_CATEGORY);
         }
         if (categoryPersistencePort.categoryExistsByName(category.getNombre())) {
