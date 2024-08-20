@@ -1,4 +1,4 @@
 package com.Stock.api_stock_emazon.domain.api.usercase;
 
-public class Marca {
+public class MarcaUseCase {
 }
