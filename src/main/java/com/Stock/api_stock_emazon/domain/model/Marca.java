@@ -1,12 +1,11 @@
 package com.Stock.api_stock_emazon.domain.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Marca {
     private Long id;
     private String nombre;

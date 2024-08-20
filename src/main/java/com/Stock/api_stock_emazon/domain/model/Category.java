@@ -1,13 +1,12 @@
 package com.Stock.api_stock_emazon.domain.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categoria {
+@Getter
+@Setter
+public class Category {
     private Long id;
     private String nombre;
     private String descripcion;
