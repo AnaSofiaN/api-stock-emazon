@@ -6,4 +6,5 @@ public class LimitNumberConstants {
 
     public static final int LIMIT_50 = 50;
     public static final int LIMIT_90 = 90;
+    public static final int LIMIT_120 = 120;
 }
