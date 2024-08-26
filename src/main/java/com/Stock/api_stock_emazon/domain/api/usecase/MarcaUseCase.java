@@ -18,7 +18,7 @@ public class MarcaUseCase implements IMarcaServicePort {
     private final IMarcaPersistencePort marcaPersistencePort;
 
     @Override
-    public void createBrand(Marca marca) {
+    public Marca createBrand(Marca marca) {
         if (marcaPersistencePort.existsByName(marca.getNombre())) {
             throw new CategoryAlreadyExistsException(ErrorConstants.ALREADY_EXIST_MARCA);
         }
@@ -32,6 +32,7 @@ public class MarcaUseCase implements IMarcaServicePort {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_DESCRIPTION_MARCA);
         }
         marcaPersistencePort.saveBrand(marca);
+        return  marca;
     }
 
     @Override

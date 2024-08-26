@@ -18,9 +18,10 @@ public class MarcaAdapter implements IMarcaPersistencePort {
     private final IMarcaRepository marcaRepository;
     private final IMarcaEntityMapper marcaEntityMapper;
     @Override
-    public void saveBrand(Marca marca) {
+    public Marca saveBrand(Marca marca) {
         MarcaEntity marcaEntity = marcaEntityMapper.toEntity(marca);
         marcaRepository.save(marcaEntity);
+        return marca;
     }
 
     @Override

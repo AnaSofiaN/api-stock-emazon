@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface IMarcaEntityMapper {
+    @Mapping(target = "id", ignore = true)
     MarcaEntity toEntity(Marca brand);
     Marca toDomain(MarcaEntity brandEntity);
     List<Marca> toModelList(List<MarcaEntity> marcaEntities);
