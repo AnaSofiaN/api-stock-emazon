@@ -1,11 +1,17 @@
 package com.Stock.api_stock_emazon.configuration;
 
 import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.adapter.CategoryAdapter;
+import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.adapter.MarcaAdapter;
 import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.mapper.ICategoryEntityMapper;
+import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.mapper.IMarcaEntityMapper;
 import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.repository.ICategoryRepository;
+import com.Stock.api_stock_emazon.adapters.driven.jpa.mysql.repository.IMarcaRepository;
 import com.Stock.api_stock_emazon.domain.api.ICategoryServicePort;
-import com.Stock.api_stock_emazon.domain.api.usercase.CategoryUseCase;
+import com.Stock.api_stock_emazon.domain.api.IMarcaServicePort;
+import com.Stock.api_stock_emazon.domain.api.usecase.CategoryUseCase;
+import com.Stock.api_stock_emazon.domain.api.usecase.MarcaUseCase;
 import com.Stock.api_stock_emazon.domain.spi.ICategoryPersistencePort;
+import com.Stock.api_stock_emazon.domain.spi.IMarcaPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +22,8 @@ public class BeanConfiguration {
 
     private final ICategoryRepository categoryRepository;
     private final ICategoryEntityMapper categoryEntityMapper;
+    private final IMarcaRepository marcaRepository;
+    private final IMarcaEntityMapper marcaEntityMapper;
 
     @Bean
     public ICategoryPersistencePort categoryPersistencePort() {
@@ -25,5 +33,15 @@ public class BeanConfiguration {
     @Bean
     public ICategoryServicePort categoryServicePort() {
         return new CategoryUseCase(categoryPersistencePort());
+    }
+
+    @Bean
+    public IMarcaPersistencePort marcaPersistencePort() {
+        return new MarcaAdapter(marcaRepository, marcaEntityMapper);
+    }
+
+    @Bean
+    public IMarcaServicePort marcaServicePort() {
+        return new MarcaUseCase(marcaPersistencePort());
     }
 }

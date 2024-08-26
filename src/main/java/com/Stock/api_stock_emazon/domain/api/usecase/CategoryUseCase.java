@@ -1,4 +1,4 @@
-package com.Stock.api_stock_emazon.domain.api.usercase;
+package com.Stock.api_stock_emazon.domain.api.usecase;
 
 import com.Stock.api_stock_emazon.domain.api.ICategoryServicePort;
 import com.Stock.api_stock_emazon.domain.exception.CategoryAlreadyExistsException;
@@ -17,13 +17,13 @@ public class CategoryUseCase implements ICategoryServicePort {
     private final ICategoryPersistencePort categoryPersistencePort;
 
     @Override
-    public void createCategory(Category category) {
+    public Category createCategory(Category category) {
         // Lógica de negocio: Validación de reglas
         if (category.getNombre().length() > LimitNumberConstants.LIMIT_50) {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_NAME_CATEGORY);
         }
         if(category.getDescripcion().isBlank() || category.getNombre().isEmpty()) {
-            throw new EmptyOrNullException(ErrorConstants.EMPTY_CATEGORY);
+            throw new EmptyOrNullException(ErrorConstants.EMPTY_DESCRIPTION);
         }
         if (category.getDescripcion().length() > LimitNumberConstants.LIMIT_90) {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_DESCRIPTION_CATEGORY);
@@ -32,6 +32,7 @@ public class CategoryUseCase implements ICategoryServicePort {
             throw new CategoryAlreadyExistsException(ErrorConstants.ALREADY_EXIST_CATEGORY);
         }
         categoryPersistencePort.saveCategory(category);
+        return category;
     }
 
     @Override
