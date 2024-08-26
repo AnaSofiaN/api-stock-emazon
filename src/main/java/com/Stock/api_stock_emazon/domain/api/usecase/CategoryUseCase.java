@@ -17,7 +17,7 @@ public class CategoryUseCase implements ICategoryServicePort {
     private final ICategoryPersistencePort categoryPersistencePort;
 
     @Override
-    public void createCategory(Category category) {
+    public Category createCategory(Category category) {
         // Lógica de negocio: Validación de reglas
         if (category.getNombre().length() > LimitNumberConstants.LIMIT_50) {
             throw new LimitCharactersException(ErrorConstants.LIMIT_CHARACTERS_NAME_CATEGORY);
@@ -32,6 +32,7 @@ public class CategoryUseCase implements ICategoryServicePort {
             throw new CategoryAlreadyExistsException(ErrorConstants.ALREADY_EXIST_CATEGORY);
         }
         categoryPersistencePort.saveCategory(category);
+        return category;
     }
 
     @Override
