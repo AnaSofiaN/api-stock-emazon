@@ -15,7 +15,7 @@ public class Articulo {
     private String descripcion;
     private int cantidad;
     private BigDecimal precio;
-    private List<String> categorias;
+    private List<Category> categorias; // Cambia de List<Long> a List<Category>
 
     // Método para actualizar la cantidad de artículos en stock
     public void actualizarCantidad(int cantidad) {

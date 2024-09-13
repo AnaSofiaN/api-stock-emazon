@@ -37,4 +37,11 @@ public class CategoryAdapter implements ICategoryPersistencePort {
         Optional<CategoryEntity> categoryEntity = categoryRepository.findByNombre(name);
         return categoryEntity.isPresent();
     }
+
+    @Override
+    public Category getCategoryById(Long id) {
+        CategoryEntity categoryEntity = categoryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + id));
+        return categoryEntityMapper.toModel(categoryEntity);
+    }
 }

@@ -37,9 +37,9 @@ public class CategoryControllerAdapter {
     @GetMapping("/listarCategorias")
     public ResponseEntity<List<CategoryResponse>> getAllCategories(@RequestParam Integer page, @RequestParam Integer size,@RequestParam String sortBy,
                                                                    @RequestParam String sortOrder) {
-        return ResponseEntity.ok(
-                categoryResponseMapper.toCategoryResponseList(
-                        categoryServicePort.listCategories(page, size, sortBy, sortOrder))
-        );
+            return ResponseEntity.ok(
+                    categoryResponseMapper.toCategoryResponseList(
+                            categoryServicePort.listCategories(page, size, sortBy, sortOrder))
+            );
     }
 }
