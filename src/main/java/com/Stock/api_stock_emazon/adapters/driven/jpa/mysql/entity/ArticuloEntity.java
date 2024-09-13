@@ -19,6 +19,11 @@ public class ArticuloEntity {
     private String descripcion;
     private int cantidad;
     private BigDecimal precio;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "articulo_categoria",
+            joinColumns = @JoinColumn(name = "articulo_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
     private List<CategoryEntity> categorias;
 }
