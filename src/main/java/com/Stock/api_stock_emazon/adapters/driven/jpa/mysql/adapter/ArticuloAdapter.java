@@ -22,6 +22,12 @@ public class ArticuloAdapter implements IArticuloPersistencePort {
     private final IArticuloEntityMapper articuloEntityMapper;
 
     @Override
+    public Optional<Articulo> getById(Long id) {
+        Optional<ArticuloEntity> articuloEntityOptional = articuloRepository.findById(id);
+        return articuloEntityOptional.map(articuloEntityMapper::toModel);
+    }
+
+    @Override
     public void saveArticulo(Articulo articulo) {
         ArticuloEntity articuloEntity = articuloEntityMapper.toEntity(articulo);
         articuloRepository.save(articuloEntity);
